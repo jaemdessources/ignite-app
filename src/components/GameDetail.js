@@ -31,7 +31,8 @@ const GameDetail = ({ pathId, clickedGame }) => {
     const stars = [];
     const rating = Math.floor(game.rating);
     for (let i = 0; i < 5; i++) {
-      if (i < rating) stars.push(<img alt="star" key={i} src={starfull} />);
+      if (i < rating)
+        stars.push(<img alt="star" key={i} src={starfull} />);
       else stars.push(<img alt="star" key={i} src={starEmpty} />);
     }
     return stars;
@@ -39,14 +40,16 @@ const GameDetail = ({ pathId, clickedGame }) => {
   //GET PLATFORM IMAGES
   const getPlatform = (platform) => {
     if (/^PlayStation/.test(platform)) return playstation;
-    else if ("Xbox One" == platform) return xbox;
-    else if ("PC" == platform) return steam;
-    else if ("Nintendo Switch" == platform) return nintendo;
-    else if ("iOS" == platform) return apple;
+    else if ("Xbox One" === platform) return xbox;
+    else if ("PC" === platform) return steam;
+    else if ("Nintendo Switch" === platform) return nintendo;
+    else if ("iOS" === platform) return apple;
     else return gamepad;
   };
   //Data
-  const { screen, game, isLoading } = useSelector((state) => state.detail);
+  const { screen, game, isLoading } = useSelector(
+    (state) => state.detail
+  );
 
   return (
     <>
@@ -73,14 +76,21 @@ const GameDetail = ({ pathId, clickedGame }) => {
               </Info>
             </Stats>
             <Media>
-              <motion.img src={smallImage(game.background_image, 1280)} alt="Game " />
+              <motion.img
+                src={smallImage(game.background_image, 1280)}
+                alt="Game "
+              />
             </Media>
             <Description>
               <p>{game.description_raw}</p>
             </Description>
             <div className="gallery">
               {screen.results.map((screen) => (
-                <img src={smallImage(screen.image, 1280)} alt="Game " key={screen.id} />
+                <img
+                  src={smallImage(screen.image, 1280)}
+                  alt="Game "
+                  key={screen.id}
+                />
               ))}
             </div>
           </Detail>
@@ -89,7 +99,9 @@ const GameDetail = ({ pathId, clickedGame }) => {
         <CardShadow className="shaddow" onClick={exitDetailHandler}>
           <Detail className="empty" layoutId={pathId}>
             <div className="rating">
-              <motion.h3 layoutId={`title ${pathId}`}>{clickedGame}</motion.h3>
+              <motion.h3 layoutId={`title ${pathId}`}>
+                {clickedGame}
+              </motion.h3>
             </div>
           </Detail>
         </CardShadow>
